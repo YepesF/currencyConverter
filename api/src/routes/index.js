@@ -5,6 +5,7 @@ router.get("/", (req, res) =>
   res.send(`<h1>Backend Currency ChatBot</h1>
 <p>Bienvenido</p>`)
 );
-// router.use("/updateList", require("./updateList"));
+
+router.use("/convert", require("./convert"));
 
 module.exports = router;
