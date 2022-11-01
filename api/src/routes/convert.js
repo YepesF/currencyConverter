@@ -5,8 +5,8 @@ const { Convertion } = require("../db");
 
 router.post("/", async (req, res) => {
   try {
-    const { to, from, amount, name } = req.body;
-    const result = await convert(to, from, amount);
+    const { amount, name } = req.body;
+    const result = await convert(amount);
     await Convertion.create({
       name,
       cop: amount,
