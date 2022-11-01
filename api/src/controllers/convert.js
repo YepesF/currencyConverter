@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const convert = async (to, from, amount) => {
+const convert = async (amount) => {
   try {
     let result;
     const requestOptions = {
@@ -10,7 +10,7 @@ const convert = async (to, from, amount) => {
     };
 
     await axios(
-      `https://api.apilayer.com/currency_data/convert?to=${to}&from=${from}&amount=${amount}`,
+      `https://api.apilayer.com/currency_data/convert?to=USD&from=COP&amount=${amount}`,
       requestOptions
     ).then((response) => {
       result = response.data;
