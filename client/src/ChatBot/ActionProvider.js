@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   let data = { name: "", amount: "" };
+
   const handleHello = (name) => {
     data = { ...data, name };
     const botMessage = createChatBotMessage(
@@ -17,19 +18,12 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     setState((prev) => ({ ...prev, messages: [...prev.messages, botMessage] }));
   };
 
-  // const handleRepeat = () => {
-  //   const botMessage = createChatBotMessage(
-  //     `Do you want convert other currency?`
-  //   );
-  //   setState((prev) => ({ ...prev, messages: [...prev.messages, botMessage] }));
-  // };
-
   const handleConvert = (amount) => {
     data = { ...data, amount };
 
     axios.post("http://localhost:3001/convert", data).then((response) => {
       const botMessage = createChatBotMessage(
-        `${amount}COP are ${response.data.result}USD. Do you want convert other currency?`
+        `${amount}COP are ${response.data.result}USD. Do you want convert other currency?.`
       );
       setState((prev) => ({
         ...prev,
@@ -37,19 +31,28 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       }));
     });
   };
+
+  const handleMain = () => {
+    // console.log("Soy Felipe");
+    data = { name: "", amount: "" };
+    const botMessage = createChatBotMessage(
+      `Welcome to de Converter Currecy ChatBot, What's your name?`
+    );
+    setState((prev) => ({ ...prev, messages: [botMessage] }));
+  };
+
   return (
     <div>
-      {" "}
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           actions: {
             handleHello,
             handleConvert,
             handleError,
-            // handleRepeat,
+            handleMain,
           },
         });
-      })}{" "}
+      })}
     </div>
   );
 };
