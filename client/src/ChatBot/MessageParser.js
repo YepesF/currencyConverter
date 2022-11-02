@@ -1,45 +1,50 @@
-import React, { useState } from "react";
-const MessageParser = ({ children, actions }) => {
-  const [data, setData] = useState({
-    name: "",
-    amount: "",
-  });
-  const parse = async (message) => {
-    const { name, amount } = data;
+import React from "react";
+const MessageParser = ({ actions, children }) => {
+  const { state, setState } = children.props;
+  const { name, amount, converted } = state;
 
+  const {
+    handleMain,
+    handleHello,
+    handleConvert,
+    handleError,
+    handleConfirmation,
+  } = actions;
+
+  const parse = async (message) => {
     if (!name && !amount) {
-      actions.handleHello(message);
-      setData((prev) => {
+      handleHello(message);
+      setState((prev) => {
         return { ...prev, name: message };
       });
     }
 
     if (name && !amount) {
       if (message > 0) {
-        actions.handleConvert(message);
-        setData((prev) => {
-          return { ...prev, amount: message };
+        const reponse = await handleConvert(message);
+        setState((prev) => {
+          return { ...prev, amount: message, converted: reponse };
         });
       }
 
       if (!Number(message) || message <= 0) {
-        actions.handleError();
+        handleError();
       }
     }
 
-    // if (message > 0) {
-    //   actions.handleConvert(message);
-    // } else {
-    //   actions.handleHello(message);
-    // }
+    if (converted) {
+      handleConfirmation();
+    }
   };
 
-  const aH = actions.handleMain;
   return (
     <div>
       {" "}
       {React.Children.map(children, (child) => {
-        return React.cloneElement(child, { parse: parse, actions: { aH } });
+        return React.cloneElement(child, {
+          parse: parse,
+          actions: { handleMain },
+        });
       })}{" "}
     </div>
   );

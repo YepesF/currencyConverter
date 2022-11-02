@@ -5,10 +5,7 @@ const config = {
   botName: "CurrencyBot",
   initialMessages: [
     createChatBotMessage(
-      `Welcome to de Converter Currecy ChatBot, What's your name?`,
-      {
-        widget: "options",
-      }
+      `Welcome to de Converter Currecy ChatBot, What's your name?`
     ),
   ],
   widgets: [
@@ -25,5 +22,6 @@ const config = {
       backgroundColor: "#376B7E",
     },
   },
+  state: { name: "", amount: "", converted: false },
 };
 export default config;
