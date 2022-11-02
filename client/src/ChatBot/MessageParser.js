@@ -33,11 +33,13 @@ const MessageParser = ({ children, actions }) => {
     //   actions.handleHello(message);
     // }
   };
+
+  const aH = actions.handleMain;
   return (
     <div>
       {" "}
       {React.Children.map(children, (child) => {
-        return React.cloneElement(child, { parse: parse, actions: {} });
+        return React.cloneElement(child, { parse: parse, actions: { aH } });
       })}{" "}
     </div>
   );
