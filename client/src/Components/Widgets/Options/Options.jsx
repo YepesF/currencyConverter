@@ -3,11 +3,12 @@ import React from "react";
 import "./Options.css";
 
 const Options = ({ actions }) => {
+  const { handleMain } = actions;
   const options = [
     {
       text: "Yes",
       handler: () => {
-        actions.aH();
+        handleMain();
       },
       id: 1,
     },
