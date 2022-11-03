@@ -12,13 +12,6 @@ const Options = ({ actions }) => {
       },
       id: 1,
     },
-    {
-      text: "No",
-      handler: () => {
-        console.log("No");
-      },
-      id: 2,
-    },
   ];
 
   const optionsMarkup = options.map((option) => (
