@@ -11,10 +11,7 @@ const TypedReact = () => {
     setTimeout(() => {
       const options = {
         showCursor: true,
-        strings: [
-          "Click on the Bot icon to get started",
-          "Type in tell a joke and see what happens...",
-        ],
+        strings: ["Click on the Bot icon to get started"],
         typeSpeed: 50,
         backSpeed: 50,
         backDelay: 2000,
