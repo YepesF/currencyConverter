@@ -1,5 +1,6 @@
 import { createChatBotMessage } from "react-chatbot-kit";
 import Options from "../Components/Widgets/Options/Options";
+import BotAvatar from "../Components/BotAvatar";
 
 const config = {
   botName: "CurrencyBot",
@@ -21,6 +22,9 @@ const config = {
     chatButton: {
       backgroundColor: "#376B7E",
     },
+  },
+  customComponents: {
+    botAvatar: (props) => <BotAvatar {...props} />,
   },
   state: { name: "", amount: "", converted: false },
 };
