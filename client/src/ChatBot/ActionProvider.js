@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const { name } = children.props.children.props.state;
+  const baseURL =
+    "https://currencyconverter.up.railway.app/" || "http://localhost:3001";
 
   const handleHello = (name) => {
     setState((prev) => ({
@@ -30,7 +32,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
 
     await axios
-      .post("http://localhost:3001/convert", { name, amount })
+      .post(`${baseURL}/convert`, { name, amount })
       .then((response) => {
         res = true;
         const botMessage = createChatBotMessage(
