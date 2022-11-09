@@ -3,7 +3,7 @@ import axios from "axios";
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const { name } = children.props.children.props.state;
   const baseURL =
-    "https://currencyconverter.up.railway.app/" || "http://localhost:3001";
+    "https://currencyconverter.up.railway.app" || "http://localhost:3001";
 
   const handleHello = (name) => {
     setState((prev) => ({
